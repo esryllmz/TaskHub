@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import connection from "./services/signalR";
+
+connection.on("ReceiveMessage", (user, message) => {
+  console.log(`${user}: ${message}`);
+});
+
+connection.send("SendMessage", "User1", "Hello World!");
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
